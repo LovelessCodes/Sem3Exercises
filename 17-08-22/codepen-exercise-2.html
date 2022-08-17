@@ -1,0 +1,63 @@
+<!-- Unconventional to repeat the same line, multiple times - please let me use Vue components & loops lol -->
+
+<!-- INSTRUCTIONS
+Modify the previous exercise so that the colour of the grid cells changes every time you click on the window.
+Use JavaScript and a list of pre-defined colors: -->
+
+<html>
+    <head>
+        <title>Exercise 2: Paintin' the balls</title>
+        <style>
+            body {
+                display: grid;
+                width:100vw;
+                height:100vh;
+                background-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F01%2F191053-cat-animals.jpg&f=1&nofb=1);
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                grid-template-columns: auto auto auto;
+            }
+            .ball {
+                width: 100%;
+                height: 100%;
+                background-color: turquoise;
+                border-radius: 50%;
+            }
+            .ball:hover {
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body onclick="changeColor()">
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <script>
+            var colors = ["blue", "orange", "red", "yellow"];
+            var currentColor = 0;
+            function changeColor(e){
+                [].forEach.call(document.getElementsByClassName("ball"), i => {
+                    i.style.background = colors[currentColor];
+                });
+                currentColor = currentColor==colors.length-1?0:currentColor+1;
+                return;
+            }
+        </script>
+    </body>
+</html>

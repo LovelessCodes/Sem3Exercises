@@ -1,0 +1,57 @@
+<!-- Unconventional to repeat the same line, multiple times - please let me use Vue components & loops lol -->
+
+<!-- INSTRUCTIONS
+Create a page with a single background image occupying the entire window.
+Over the image there should be a 3X3 grid that fills the entire window.
+Each grid cell should have a circular opaque shape.
+No space between grid cells.
+
+When hovering the mouse cursor over the grid cell, it should change its opacity to 0.
+Solve this without using any JavaScript! -->
+
+<html>
+    <head>
+        <title>Exercise 1: Playin' with balls</title>
+        <style>
+            body {
+                display: grid;
+                width:100vw;
+                height:100vh;
+                background-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F01%2F191053-cat-animals.jpg&f=1&nofb=1);
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                grid-template-columns: auto auto auto;
+            }
+            .ball {
+                width: 100%;
+                height: 100%;
+                background-color: turquoise;
+                border-radius: 50%;
+            }
+            .ball:hover {
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+        <div class="ball">
+        </div>
+    </body>
+</html>

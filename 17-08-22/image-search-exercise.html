@@ -1,0 +1,43 @@
+<!-- Yeah I know it's pretty bad to have so many line breaks, but I didn't want to use Flexbox or Grid for this exercise -->
+
+<!-- INSTRUCTIONS
+Exercise 2: Develop a website as shown in the picture below:
+
+Image: https://gocoding.org/wp-content/uploads/2020/12/HTML-Exercise-2.png?ezimgfmt=ng:webp/ngcb3 
+
+Note: We have not provided code for this example. You need to write the code by yourself. The image of Kung Fu Panda shown above is default hardcoded image added using image tag and not searched via internet. -->
+
+<html>
+    <head>
+        <title>Welcome back to basics - Image Search</title>
+        <style>
+            hr {
+                width:95%;
+                opacity:50%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercise 2: Image Searching Website</h1>
+        <hr>
+        <form method="POST" action="/search">
+            <label for="searchbar">Search your Image here:</label>
+            <input type="text" id="searchbar" name="search" value="Kung Fu Panda"/>
+            <input type="submit" value="Search"/>
+        </form>
+        <img src="http://pluspng.com/img-png/png-kung-fu-kung-fu-panda-png-3000.png" alt="Kung Fu Panda" style="max-width:250px;"/><br>
+        <a href="https://en.wikipedia.org/wiki/Kung_Fu_Panda">For more click here</a>
+        <hr>
+        <form method="POST" action="/comment">
+            <p>Feedback Form:</p>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"/><br>
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date"/><br>
+            <label for="comment">Comment:</label><br>
+            <textarea name="comment" id="comment"></textarea><br>
+            <br>
+            <input type="submit" value="Submit"/>
+        </form>
+    </body>
+</html>

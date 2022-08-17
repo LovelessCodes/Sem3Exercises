@@ -1,0 +1,132 @@
+<!-- Standard Javascript is the beeeeeeeeest (Just jokin' - we need Vue) -->
+
+<!-- INSTRUCTIONS
+Modify the previous exercise in order to apply the "edit in place" technique.
+When users click on the clock, the they should be able to edit the time.
+When they press enter, the timer should start. -->
+
+<html>
+    <head>
+        <title>Exercise 4: Poof goes the Clock</title>
+        <style>
+            .blue {
+                background-color: #0781D4;
+            }
+
+            #clock {
+                width:200px;
+                height:200px;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:3rem;
+                font-family:sans-serif;
+                margin-top:10px;
+                box-shadow: 2px 2px 2px 0px black;
+            }
+
+            #txtTempo, #btnStart {
+                font-size:1.5rem;
+            }
+
+            #btnStart {
+                margin: 10px;
+                border-radius: 0;
+                background-color: linear-gradient(grey, white, -90deg);
+                outline: 0;
+                border: 1px solid darkgrey;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            #txtTempo {
+                width:50%;
+                text-align:center;
+                background: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="clock" class="blue" onclick="tryEdit()">00:00</div>
+        <script>
+            // when the document is loaded, trigger the "documentLoaded" function
+            window.addEventListener('DOMContentLoaded', documentLoaded, false);
+
+            var startTime;
+            var limite;
+            var temporizador;
+
+            function tryEdit() {
+                var currentTime = new Date();
+                if ((!startTime || startTime.getTime == 0) && !document.getElementById("txtTempo")) {
+                    document.getElementById("clock").innerHTML = "<input type=\"number\" id=\"txtTempo\" value=\"10\">";
+                }
+            }
+
+            function documentLoaded() {
+                "use strict";
+
+                // listen for mouse clicks on the button
+                // document.getElementById("btnStart").addEventListener("click", botaoClicked, false);
+
+                document.getElementById("clock").addEventListener("keypress", event => {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        botaoClicked();
+                    }
+                });
+
+                console.log("Documento carregado");
+            }
+
+            // when we click on the button, we save the current time, and the time limit. We then
+            // create a timer to execute the "updateTime" function once a second.
+            function botaoClicked() {
+                "use strict";
+
+                startTime = new Date();
+
+                limite = parseInt(document.getElementById("txtTempo").value);
+
+                clearInterval(temporizador);
+                temporizador = setInterval(updateTime, 1000);
+            }
+
+            function updateTime() {
+                "use strict";
+
+                // read the current time
+                var currentTime = new Date();
+
+                // calculate how many seconds passed since the start of the timer
+                var elapsed = (currentTime.getTime() - startTime.getTime()) / 1000;
+
+                // convert seconds to minutes and seconds (below 60)
+                var minutos = Math.floor(elapsed / 60);
+                var segundos = Math.floor(elapsed % 60);
+
+                // pad with zeroes on the left to look better
+                if (minutos < 10) {
+                    minutos = "0" + minutos;
+                }
+                if (segundos < 10) {
+                    segundos = "0" + segundos;
+                }
+
+                // show the elapsed time
+                document.getElementById("clock").innerHTML = minutos + ":" + segundos;
+
+                // check if we are above the time limit and set the color of the timer accordingly
+                if (minutos >= limite) {
+                    document.getElementById("clock").className = "red";
+                } else {
+                    document.getElementById("clock").className = "blue";
+                }
+
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+<!-- Standard Javascript is the beeeeeeeeest (Just jokin' - we need Vue) -->
+
+<!-- INSTRUCTIONS
+Make a timer similar to the one on the animated gif above.
+
+Your main task is to create the CSS styles to achieve a visual result similar to the figure.
+
+Make sure you apply the following classes to the "clock" div: (some css code)
+
+The “blue” class is applied at the beginning, and the "red" class is applied when the value of the timer exceeds the predefined value.
+
+To help you, use the following provided structure in the Codepen below. -->
+
+<html>
+    <head>
+        <title>Exercise 3: Early up, on the clock</title>
+        <style>
+            .blue {
+                background-color: #0781D4;
+            }
+
+            #clock {
+                width:200px;
+                height:200px;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:3rem;
+                font-family:sans-serif;
+                margin-top:10px;
+                box-shadow: 2px 2px 2px 0px black;
+            }
+
+            #txtTempo, #btnStart {
+                font-size:1.5rem;
+            }
+
+            #btnStart {
+                margin: 10px;
+                border-radius: 0;
+                background-color: linear-gradient(grey, white, -90deg);
+                outline: 0;
+                border: 1px solid darkgrey;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            #controlos {
+                width:200px;
+                text-align:center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="controlos">
+            <input id="txtTempo" type="text" value="10" size="4" maxlength="4"><button id="btnStart">Start</button>
+        </div>
+    
+        <div id="clock" class="blue">00:00</div>
+        <script>
+            // when the document is loaded, trigger the "documentLoaded" function
+            window.addEventListener('DOMContentLoaded', documentLoaded, false);
+
+            var startTime;
+            var limite;
+            var temporizador;
+
+            function documentLoaded() {
+                "use strict";
+
+                // listen for mouse clicks on the button
+                document.getElementById("btnStart").addEventListener("click", botaoClicked, false);
+
+                console.log("Documento carregado");
+            }
+
+            // when we click on the button, we save the current time, and the time limit. We then
+            // create a timer to execute the "updateTime" function once a second.
+            function botaoClicked() {
+                "use strict";
+
+                startTime = new Date();
+
+                limite = parseInt(document.getElementById("txtTempo").value);
+
+                clearInterval(temporizador);
+                temporizador = setInterval(updateTime, 1000);
+            }
+
+            function updateTime() {
+                "use strict";
+
+                // read the current time
+                var currentTime = new Date();
+
+                // calculate how many seconds passed since the start of the timer
+                var elapsed = (currentTime.getTime() - startTime.getTime()) / 1000;
+
+                // convert seconds to minutes and seconds (below 60)
+                var minutos = Math.floor(elapsed / 60);
+                var segundos = Math.floor(elapsed % 60);
+
+                // pad with zeroes on the left to look better
+                if (minutos < 10) {
+                    minutos = "0" + minutos;
+                }
+                if (segundos < 10) {
+                    segundos = "0" + segundos;
+                }
+
+                // show the elapsed time
+                document.getElementById("clock").innerHTML = minutos + ":" + segundos;
+
+                // check if we are above the time limit and set the color of the timer accordingly
+                if (minutos >= limite) {
+                    document.getElementById("clock").className = "red";
+                } else {
+                    document.getElementById("clock").className = "blue";
+                }
+
+            }
+        </script>
+    </body>
+</html>
